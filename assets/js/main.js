@@ -51,6 +51,26 @@ const sr = ScrollReveal({
 //     reset: true
 });
 
+// admaja ketik
+document.addEventListener("DOMContentLoaded", function() {
+    const nameElement = document.getElementById("name");
+    const nameText = nameElement.textContent;
+    let currentIndex = 0;
+
+    function typeEffect() {
+        if (currentIndex < nameText.length) {
+            nameElement.textContent = nameText.substring(0, currentIndex + 1);
+            currentIndex++;
+            setTimeout(typeEffect, 150); // Adjust the typing speed here
+        }
+    }
+
+    // Clear the initial text content and start the typing effect
+    nameElement.textContent = "";
+    typeEffect();
+});
+
+
 sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
