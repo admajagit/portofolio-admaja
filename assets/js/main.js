@@ -52,23 +52,45 @@ const sr = ScrollReveal({
 });
 
 // admaja ketik
-document.addEventListener("DOMContentLoaded", function() {
-    const nameElement = document.getElementById("name");
-    const nameText = nameElement.textContent;
-    let currentIndex = 0;
+// document.addEventListener("DOMContentLoaded", function() {
+//     const nameElement = document.getElementById("name");
+//     const nameText = nameElement.textContent;
+//     let currentIndex = 0;
 
-    function typeEffect() {
-        if (currentIndex < nameText.length) {
-            nameElement.textContent = nameText.substring(0, currentIndex + 1);
-            currentIndex++;
-            setTimeout(typeEffect, 150); // Adjust the typing speed here
-        }
+//     function typeEffect() {
+//         if (currentIndex < nameText.length) {
+//             nameElement.textContent = nameText.substring(0, currentIndex + 1);
+//             currentIndex++;
+//             setTimeout(typeEffect, 150); // Adjust the typing speed here
+//         }
+//     }
+
+//     // Clear the initial text content and start the typing effect
+//     nameElement.textContent = "";
+//     typeEffect();
+// });
+const toggleSwitch = document.querySelector('.toggle-switch');
+
+toggleSwitch.addEventListener('change', switchTheme);
+
+function switchTheme() {
+    if (toggleSwitch.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
     }
+}
 
-    // Clear the initial text content and start the typing effect
-    nameElement.textContent = "";
-    typeEffect();
-});
+// Check the user's preferred theme from localStorage and set it
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
 
 
 sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
