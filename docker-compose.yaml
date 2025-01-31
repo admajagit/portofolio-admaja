@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "9090:80"  # Akses aplikasi melalui http://localhost:8080
+    volumes:
+      - .:/usr/share/nginx/html  # Menghubungkan folder proyek ke container
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
